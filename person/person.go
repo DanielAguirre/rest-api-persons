@@ -11,20 +11,22 @@ import (
 
 // Person is the structure definitionfor a Person
 // name: .. Name of a user
-type Person struct {
-	Name     string `json:"name"`
-	LastName string `json:"lastName, omitempty"`
-}
+/*type Person struct {
+	Id       uuid.UUID `json:"id"`
+	Name     string    `json:"name"`
+	LastName string    `json:"lastName, omitempty"`
+}*/
+
+var person DBPerson.Person
 
 func CreatePerson(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	var person Person
-	fmt.Println("Create Person")
 	err := json.NewDecoder(r.Body).Decode(&person)
 
 	if err != nil {
 		panic(err.Error())
 	}
 
+	person.Id = uuid.NewV4()
 	fmt.Println(person.Name)
 	personJson, err := json.Marshal(person)
 	if err != nil {
