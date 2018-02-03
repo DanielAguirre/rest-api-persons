@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/daniel/rest-api-persons/db"
 	"github.com/daniel/rest-api-persons/person"
 	"github.com/julienschmidt/httprouter"
@@ -17,5 +16,7 @@ func main() {
 	router := httprouter.New()
 	router.GET("/api/person/:id", person.FindPerson)
 	router.POST("/api/person", person.CreatePerson)
+	router.PUT("/api/person/:id", person.UpdatePerson)
+	router.GET("/api/person/", person.FindAllPeople)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
