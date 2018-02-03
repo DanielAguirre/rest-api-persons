@@ -3,7 +3,9 @@ package person
 import (
 	"encoding/json"
 	"fmt"
+	DBPerson "github.com/daniel/rest-api-persons/models"
 	"github.com/julienschmidt/httprouter"
+	"github.com/satori/go.uuid"
 	"net/http"
 )
 
